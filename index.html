@@ -6,19 +6,21 @@
 <title>سفير الجوف</title>
 <style>
   :root{
-    --primary:#556b2f;
-    --primary-2:#6f8a3a;
-    --bg:#f3f5f7;
+    --primary:#1aa6a6;
+    --primary-dark:#148b8b;
+    --primary-soft:#e8f8f8;
+    --bg:#f4f7f8;
     --panel:#ffffff;
-    --border:#d9dee5;
+    --border:#d7e3e5;
     --text:#1f2937;
     --muted:#6b7280;
-    --soft:#eef3e3;
-    --danger:#b42318;
-    --info:#1d4ed8;
+    --danger:#c62828;
+    --blue:#2563eb;
+    --gray:#eef2f4;
   }
 
   *{box-sizing:border-box}
+
   body{
     margin:0;
     font-family:"Segoe UI",Tahoma,Arial,sans-serif;
@@ -33,14 +35,14 @@
   }
 
   .sidebar{
-    background:linear-gradient(180deg,var(--primary),#445625);
+    background:linear-gradient(180deg,var(--primary),var(--primary-dark));
     color:#fff;
     padding:22px 16px;
   }
 
   .brand{
     padding:10px 12px 22px;
-    border-bottom:1px solid rgba(255,255,255,.12);
+    border-bottom:1px solid rgba(255,255,255,.16);
     margin-bottom:16px;
   }
 
@@ -51,28 +53,28 @@
 
   .brand p{
     margin:8px 0 0;
-    color:rgba(255,255,255,.8);
+    color:rgba(255,255,255,.85);
     font-size:13px;
   }
 
   .nav-btn{
     width:100%;
     border:none;
-    border-radius:12px;
+    border-radius:14px;
     padding:13px 14px;
-    margin:6px 0;
+    margin:7px 0;
     text-align:right;
-    background:rgba(255,255,255,.08);
+    background:rgba(255,255,255,.10);
     color:#fff;
     cursor:pointer;
-    font-weight:600;
+    font-weight:700;
     transition:.2s;
   }
 
   .nav-btn:hover,
   .nav-btn.active{
     background:#fff;
-    color:var(--primary);
+    color:var(--primary-dark);
   }
 
   .main{
@@ -82,17 +84,18 @@
   .topbar{
     background:var(--panel);
     border:1px solid var(--border);
-    border-radius:18px;
+    border-radius:20px;
     padding:18px 22px;
     display:flex;
     align-items:center;
     justify-content:space-between;
     margin-bottom:18px;
+    box-shadow:0 6px 20px rgba(0,0,0,.03);
   }
 
   .topbar h2{
     margin:0;
-    color:var(--primary);
+    color:var(--primary-dark);
     font-size:26px;
   }
 
@@ -107,26 +110,26 @@
   .card{
     background:var(--panel);
     border:1px solid var(--border);
-    border-radius:18px;
-    padding:20px;
-    box-shadow:0 6px 20px rgba(16,24,40,.04);
+    border-radius:22px;
+    padding:22px;
+    box-shadow:0 8px 22px rgba(15,23,42,.04);
   }
 
   .tabs{
     display:flex;
     gap:10px;
     flex-wrap:wrap;
-    margin-bottom:18px;
+    margin-bottom:20px;
   }
 
   .tab-btn{
     border:none;
-    background:#eceff3;
-    color:#374151;
+    background:#edf2f3;
+    color:#334155;
     padding:11px 16px;
     border-radius:12px;
     cursor:pointer;
-    font-weight:700;
+    font-weight:800;
   }
 
   .tab-btn.active{
@@ -139,8 +142,8 @@
 
   .section-title{
     margin:4px 0 18px;
-    font-size:18px;
-    color:var(--primary);
+    font-size:20px;
+    color:var(--primary-dark);
     font-weight:800;
   }
 
@@ -158,8 +161,8 @@
 
   .field label{
     font-size:13px;
-    font-weight:700;
-    color:#374151;
+    font-weight:800;
+    color:#334155;
   }
 
   .field input,
@@ -167,43 +170,44 @@
   .field textarea{
     width:100%;
     border:1px solid var(--border);
-    border-radius:12px;
-    padding:11px 12px;
+    border-radius:14px;
+    padding:12px 13px;
     background:#fff;
     font:inherit;
     color:var(--text);
     outline:none;
+    transition:.2s;
   }
 
   .field input:focus,
   .field select:focus,
   .field textarea:focus{
-    border-color:var(--primary-2);
-    box-shadow:0 0 0 4px rgba(111,138,58,.12);
+    border-color:var(--primary);
+    box-shadow:0 0 0 4px rgba(26,166,166,.12);
   }
 
   .field textarea{
-    min-height:100px;
+    min-height:110px;
     resize:vertical;
   }
 
   .full{grid-column:1 / -1}
 
   .upload-box{
-    border:1px dashed #b9c4a2;
-    background:var(--soft);
-    border-radius:14px;
+    border:1px dashed #9bd6d6;
+    background:var(--primary-soft);
+    border-radius:16px;
     padding:16px;
   }
 
   .upload-label{
     display:inline-block;
-    background:var(--primary);
+    background:var(--primary-dark);
     color:#fff;
-    padding:10px 14px;
-    border-radius:10px;
+    padding:11px 16px;
+    border-radius:12px;
     cursor:pointer;
-    font-weight:700;
+    font-weight:800;
   }
 
   .upload-label input{
@@ -236,17 +240,17 @@
 
   .btn{
     border:none;
-    border-radius:12px;
-    padding:11px 16px;
+    border-radius:14px;
+    padding:11px 18px;
     cursor:pointer;
     font-weight:800;
     font-size:14px;
   }
 
-  .btn-primary{background:var(--primary); color:#fff}
-  .btn-secondary{background:var(--info); color:#fff}
+  .btn-primary{background:var(--primary-dark); color:#fff}
+  .btn-secondary{background:var(--blue); color:#fff}
   .btn-danger{background:var(--danger); color:#fff}
-  .btn-light{background:#eef2f7; color:#374151}
+  .btn-light{background:var(--gray); color:#374151}
   .btn-outline{background:#fff; color:#374151; border:1px solid var(--border)}
 
   .list-wrap{
@@ -259,14 +263,14 @@
 
   .record-list{
     display:grid;
-    gap:10px;
+    gap:12px;
   }
 
   .record{
     background:#fff;
     border:1px solid var(--border);
-    border-radius:14px;
-    padding:14px;
+    border-radius:16px;
+    padding:16px;
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -274,8 +278,8 @@
   }
 
   .record.active{
-    border-color:var(--primary-2);
-    background:#f8fbf2;
+    border-color:var(--primary);
+    background:#f4fbfb;
   }
 
   .record h4{
@@ -298,7 +302,7 @@
   .stat{
     background:#fff;
     border:1px solid var(--border);
-    border-radius:16px;
+    border-radius:18px;
     padding:18px;
   }
 
@@ -311,7 +315,7 @@
   .stat .num{
     font-size:28px;
     font-weight:800;
-    color:var(--primary);
+    color:var(--primary-dark);
   }
 
   @media (max-width: 980px){
@@ -343,7 +347,7 @@
     <div class="topbar">
       <div>
         <h2 id="pageTitle">الرئيسية</h2>
-        <small>نسخة واجهة احترافية قابلة للتطوير</small>
+        <small>واجهة احترافية حديثة</small>
       </div>
       <small>جامعة الجوف</small>
     </div>
@@ -389,11 +393,12 @@
             <div class="field"><label>الكلية</label><input id="college"></div>
 
             <div class="field"><label>القسم</label><input id="department"></div>
+            <div class="field"><label>اسم المستخدم أو الصفة</label><input id="roleName"></div>
+
             <div class="field"><label>قرار التعيين</label><input id="appointmentDecision"></div>
-
             <div class="field"><label>تاريخ التعيين</label><input type="date" id="appointmentDate"></div>
-            <div class="field"><label>قرار ترقية محاضر</label><input id="promotionDecision"></div>
 
+            <div class="field"><label>قرار ترقية محاضر</label><input id="promotionDecision"></div>
             <div class="field"><label>تاريخ الترقية</label><input type="date" id="promotionDate"></div>
 
             <div class="field full">
@@ -489,10 +494,10 @@
       </div>
     </section>
 
-    <section class="page" id="scholarship"><div class="card"><div class="section-title">ابتعاث</div><p>سيتم استكماله بنفس المستوى.</p></div></section>
-    <section class="page" id="financial"><div class="card"><div class="section-title">ضمان مالي</div><p>سيتم استكماله بنفس المستوى.</p></div></section>
-    <section class="page" id="onboarding"><div class="card"><div class="section-title">مباشرات</div><p>سيتم استكماله بنفس المستوى.</p></div></section>
-    <section class="page" id="statistics"><div class="card"><div class="section-title">إحصائيات</div><p>سيتم استكماله بنفس المستوى.</p></div></section>
+    <section class="page" id="scholarship"><div class="card"><div class="section-title">ابتعاث</div><p>الخطوة التالية بعد اعتماد صفحة القاعدة.</p></div></section>
+    <section class="page" id="financial"><div class="card"><div class="section-title">ضمان مالي</div><p>الخطوة التالية بعد اعتماد صفحة القاعدة.</p></div></section>
+    <section class="page" id="onboarding"><div class="card"><div class="section-title">مباشرات</div><p>الخطوة التالية بعد اعتماد صفحة القاعدة.</p></div></section>
+    <section class="page" id="statistics"><div class="card"><div class="section-title">إحصائيات</div><p>الخطوة التالية بعد اعتماد صفحة القاعدة.</p></div></section>
   </main>
 </div>
 
@@ -549,6 +554,7 @@
       employeeNo: document.getElementById("employeeNo").value,
       college: document.getElementById("college").value,
       department: document.getElementById("department").value,
+      roleName: document.getElementById("roleName").value,
       appointmentDecision: document.getElementById("appointmentDecision").value,
       appointmentDate: document.getElementById("appointmentDate").value,
       promotionDecision: document.getElementById("promotionDecision").value,
@@ -567,6 +573,7 @@
     document.getElementById("employeeNo").value = r.employeeNo || "";
     document.getElementById("college").value = r.college || "";
     document.getElementById("department").value = r.department || "";
+    document.getElementById("roleName").value = r.roleName || "";
     document.getElementById("appointmentDecision").value = r.appointmentDecision || "";
     document.getElementById("appointmentDate").value = r.appointmentDate || "";
     document.getElementById("promotionDecision").value = r.promotionDecision || "";
