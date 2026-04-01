@@ -1,24 +1,145 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <title>سفير الجوف</title>
+
 <style>
 body {
+  margin: 0;
   font-family: Tahoma;
   background: #eef2f5;
-  margin: 0;
 }
-h1 {
+
+.sidebar {
+  width: 220px;
+  background: #7b8200;
+  color: white;
+  position: fixed;
+  height: 100%;
+  padding-top: 20px;
+}
+
+.sidebar h3 {
   text-align: center;
+}
+
+.sidebar button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: #f5f5f5;
+  cursor: pointer;
+  text-align: right;
+}
+
+.content {
+  margin-right: 220px;
+  padding: 20px;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+h1 {
   color: #7b8200;
-  margin-top: 100px;
+}
+
+input, select {
+  width: 100%;
+  padding: 6px;
+  margin: 5px 0;
+}
+
+.btn {
+  padding: 8px;
+  background: #7b8200;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 </style>
 </head>
+
 <body>
 
-<h1>نظام سفير الجوف يعمل بنجاح 🎉</h1>
+<div class="sidebar">
+<h3>سفير الجوف</h3>
+
+<button onclick="showPage('home')">الرئيسية</button>
+<button onclick="showPage('db')">قاعدة البيانات</button>
+<button onclick="showPage('sch')">ابتعاث</button>
+<button onclick="showPage('fin')">ضمان مالي</button>
+<button onclick="showPage('on')">مباشرات</button>
+<button onclick="showPage('stat')">إحصائيات</button>
+</div>
+
+<div class="content">
+
+<div id="home" class="page active">
+<h1>مرحبًا بك في نظام سفير الجوف</h1>
+</div>
+
+<div id="db" class="page">
+<h1>البيانات الشخصية</h1>
+
+<input id="name" placeholder="اسم المبتعث">
+<input id="id" placeholder="السجل المدني">
+<input id="college" placeholder="الكلية">
+<input id="dept" placeholder="القسم">
+<input id="promo" placeholder="قرار ترقية محاضر">
+
+<button class="btn" onclick="saveData()">إضافة</button>
+
+<ul id="list"></ul>
+</div>
+
+<div id="sch" class="page">
+<h1>قسم الابتعاث</h1>
+<input placeholder="الدولة">
+<input placeholder="الجامعة">
+<input placeholder="التخصص">
+</div>
+
+<div id="fin" class="page">
+<h1>ضمان مالي</h1>
+<input placeholder="المبلغ">
+<input placeholder="الحالة">
+</div>
+
+<div id="on" class="page">
+<h1>مباشرات</h1>
+<input placeholder="تاريخ المباشرة">
+</div>
+
+<div id="stat" class="page">
+<h1>إحصائيات</h1>
+<p>قريبًا...</p>
+</div>
+
+</div>
+
+<script>
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function saveData(){
+  let name = document.getElementById('name').value;
+  let list = document.getElementById('list');
+
+  let li = document.createElement('li');
+  li.innerText = name;
+
+  list.appendChild(li);
+}
+</script>
 
 </body>
 </html>
