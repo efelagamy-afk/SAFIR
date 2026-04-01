@@ -5,141 +5,180 @@
 <title>سفير الجوف</title>
 
 <style>
+:root {
+  --main: #7b8200;
+  --bg: #eef2f5;
+}
+
 body {
   margin: 0;
-  font-family: Tahoma;
-  background: #eef2f5;
+  font-family: 'Segoe UI', Tahoma;
+  background: var(--bg);
 }
 
 .sidebar {
-  width: 220px;
-  background: #7b8200;
+  width: 240px;
+  background: var(--main);
   color: white;
   position: fixed;
   height: 100%;
   padding-top: 20px;
 }
 
-.sidebar h3 {
+.sidebar h2 {
   text-align: center;
+  margin-bottom: 30px;
 }
 
 .sidebar button {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   border: none;
   background: #f5f5f5;
   cursor: pointer;
   text-align: right;
+  font-weight: bold;
 }
 
 .content {
-  margin-right: 220px;
+  margin-right: 240px;
+  padding: 25px;
+}
+
+.header {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: var(--main);
+  font-weight: bold;
+}
+
+.card {
+  background: white;
   padding: 20px;
+  border-radius: 10px;
 }
 
-.page {
-  display: none;
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-.page.active {
-  display: block;
+.tabs button {
+  padding: 10px 15px;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+  border-radius: 6px;
 }
 
-h1 {
-  color: #7b8200;
+.tabs .active {
+  background: var(--main);
+  color: white;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
 }
 
 input, select {
-  width: 100%;
-  padding: 6px;
-  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
 }
 
-.btn {
-  padding: 8px;
-  background: #7b8200;
-  color: white;
+.actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.actions button {
+  padding: 10px 15px;
   border: none;
+  background: var(--main);
+  color: white;
+  border-radius: 6px;
   cursor: pointer;
 }
+
 </style>
 </head>
 
 <body>
 
 <div class="sidebar">
-<h3>سفير الجوف</h3>
-
-<button onclick="showPage('home')">الرئيسية</button>
-<button onclick="showPage('db')">قاعدة البيانات</button>
-<button onclick="showPage('sch')">ابتعاث</button>
-<button onclick="showPage('fin')">ضمان مالي</button>
-<button onclick="showPage('on')">مباشرات</button>
-<button onclick="showPage('stat')">إحصائيات</button>
+<h2>سفير الجوف</h2>
+<button>الرئيسية</button>
+<button>قاعدة البيانات</button>
+<button>ابتعاث</button>
+<button>ضمان مالي</button>
+<button>مباشرات</button>
+<button>إحصائيات</button>
 </div>
 
 <div class="content">
 
-<div id="home" class="page active">
-<h1>مرحبًا بك في نظام سفير الجوف</h1>
+<div class="header">
+قاعدة بيانات المبتعثين
 </div>
 
-<div id="db" class="page">
-<h1>البيانات الشخصية</h1>
+<div class="card">
 
-<input id="name" placeholder="اسم المبتعث">
-<input id="id" placeholder="السجل المدني">
-<input id="college" placeholder="الكلية">
-<input id="dept" placeholder="القسم">
-<input id="promo" placeholder="قرار ترقية محاضر">
-
-<button class="btn" onclick="saveData()">إضافة</button>
-
-<ul id="list"></ul>
+<div class="tabs">
+<button class="active">البيانات الشخصية</button>
+<button>اللغة</button>
+<button>الماجستير</button>
+<button>الدكتوراة</button>
 </div>
 
-<div id="sch" class="page">
-<h1>قسم الابتعاث</h1>
-<input placeholder="الدولة">
-<input placeholder="الجامعة">
-<input placeholder="التخصص">
+<div class="grid">
+
+<input placeholder="السجل المدني">
+<input placeholder="اسم المبتعث">
+
+<select>
+<option>الجنس</option>
+<option>ذكر</option>
+<option>أنثى</option>
+</select>
+
+<input type="date" placeholder="تاريخ الميلاد">
+
+<input placeholder="البريد الإلكتروني">
+<input placeholder="الجوال">
+
+<input placeholder="الرقم الوظيفي">
+<input placeholder="الكلية">
+
+<input placeholder="القسم">
+<input placeholder="قرار التعيين">
+
+<input type="date">
+<input placeholder="قرار ترقية محاضر">
+
+<input type="date">
+<input placeholder="المرفقات">
+
 </div>
 
-<div id="fin" class="page">
-<h1>ضمان مالي</h1>
-<input placeholder="المبلغ">
-<input placeholder="الحالة">
-</div>
-
-<div id="on" class="page">
-<h1>مباشرات</h1>
-<input placeholder="تاريخ المباشرة">
-</div>
-
-<div id="stat" class="page">
-<h1>إحصائيات</h1>
-<p>قريبًا...</p>
+<div class="actions">
+<button>إضافة</button>
+<button>تعديل</button>
+<button>حذف</button>
+<button>مسح</button>
+<button>طباعة</button>
+<button>Excel</button>
 </div>
 
 </div>
 
-<script>
-function showPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
-
-function saveData(){
-  let name = document.getElementById('name').value;
-  let list = document.getElementById('list');
-
-  let li = document.createElement('li');
-  li.innerText = name;
-
-  list.appendChild(li);
-}
-</script>
+</div>
 
 </body>
 </html>
