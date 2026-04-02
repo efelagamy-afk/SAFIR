@@ -31,48 +31,48 @@
 
     .layout{
       display:grid;
-      grid-template-columns:210px 1fr;
+      grid-template-columns:270px 1fr;
       min-height:100vh;
     }
 
     .sidebar{
       background:linear-gradient(180deg, var(--primary), var(--primary-dark));
       color:#fff;
-      padding:20px 14px;
+      padding:22px 16px;
       box-shadow:0 0 20px rgba(0,0,0,.08);
     }
 
     .brand{
-      padding:10px 10px 20px;
+      padding:12px 12px 22px;
       border-bottom:1px solid rgba(255,255,255,.18);
-      margin-bottom:14px;
+      margin-bottom:16px;
     }
 
     .brand h1{
       margin:0;
-      font-size:22px;
+      font-size:24px;
       font-weight:900;
     }
 
     .brand p{
-      margin:7px 0 0;
+      margin:8px 0 0;
       color:rgba(255,255,255,.9);
-      font-size:13px;
+      font-size:14px;
       font-weight:600;
     }
 
     .nav-btn{
       width:100%;
       border:none;
-      border-radius:14px;
-      padding:13px 14px;
-      margin:7px 0;
+      border-radius:16px;
+      padding:15px 16px;
+      margin:8px 0;
       text-align:right;
       background:rgba(255,255,255,.10);
       color:#fff;
       cursor:pointer;
       font-weight:800;
-      font-size:15px;
+      font-size:17px;
       transition:.2s;
     }
 
@@ -239,20 +239,26 @@
 
     .upload-actions{
       display:flex;
-      gap:10px;
+      gap:12px;
       flex-wrap:wrap;
       align-items:center;
     }
 
     .upload-label{
-      display:inline-block;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:150px;
+      height:48px;
       background:var(--primary-dark);
       color:#fff;
-      padding:11px 16px;
-      border-radius:12px;
+      padding:0 18px;
+      border-radius:14px;
       cursor:pointer;
       font-weight:800;
+      font-size:15px;
       transition:.2s;
+      border:none;
     }
 
     .upload-label:hover{
@@ -265,18 +271,27 @@
     }
 
     .mini-btn{
-      border:none;
-      border-radius:12px;
-      padding:10px 14px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:150px;
+      height:48px;
+      border-radius:14px;
+      padding:0 18px;
       cursor:pointer;
       font-weight:800;
-      font-size:14px;
+      font-size:15px;
+      transition:.2s;
     }
 
     .mini-btn.download{
       background:#fff;
       color:#344054;
       border:1px solid var(--border);
+    }
+
+    .mini-btn:hover{
+      transform:translateY(-1px);
     }
 
     .file-list{
@@ -475,7 +490,27 @@
               <div class="field"><label>الجوال</label><input id="mobile"></div>
 
               <div class="field"><label>الرقم الوظيفي</label><input id="employeeNo"></div>
-              <div class="field"><label>الكلية</label><input id="college"></div>
+              <div class="field">
+                <label>الكلية</label>
+                <select id="college">
+                  <option value=""></option>
+                  <option>كلية الطب</option>
+                  <option>كلية طب الأسنان</option>
+                  <option>كلية الصيدلة</option>
+                  <option>كلية العلوم الطبية التطبيقية</option>
+                  <option>كلية التمريض</option>
+                  <option>كلية العلوم</option>
+                  <option>كلية الهندسة</option>
+                  <option>كلية الحاسب والمعلومات</option>
+                  <option>كلية الأعمال</option>
+                  <option>كلية الشريعة والقانون</option>
+                  <option>كلية الآداب</option>
+                  <option>كلية التربية</option>
+                  <option>كلية العلوم والآداب بالقريات</option>
+                  <option>كلية العلوم والآداب بطبرجل</option>
+                  <option>كلية العلوم والآداب بسكاكا</option>
+                </select>
+              </div>
 
               <div class="field"><label>القسم</label><input id="department"></div>
               <div class="field"><label>قرار التعيين</label><input id="appointmentDecision"></div>
