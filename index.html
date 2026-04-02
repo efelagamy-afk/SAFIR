@@ -6,9 +6,9 @@
   <title>سفير الجوف</title>
   <style>
     :root{
-      --primary:#17a2a4;
-      --primary-dark:#0f7f81;
-      --primary-soft:#e9f8f8;
+      --primary:#18a7a8;
+      --primary-dark:#107e7f;
+      --primary-soft:#e8f8f8;
       --bg:#f4f7f8;
       --panel:#ffffff;
       --border:#d9e4e7;
@@ -31,49 +31,48 @@
 
     .layout{
       display:grid;
-      grid-template-columns:260px 1fr;
+      grid-template-columns:210px 1fr;
       min-height:100vh;
     }
 
     .sidebar{
       background:linear-gradient(180deg, var(--primary), var(--primary-dark));
       color:#fff;
-      padding:22px 16px;
-      box-shadow: 0 0 20px rgba(0,0,0,.08);
+      padding:20px 14px;
+      box-shadow:0 0 20px rgba(0,0,0,.08);
     }
 
     .brand{
-      padding:12px 12px 24px;
+      padding:10px 10px 20px;
       border-bottom:1px solid rgba(255,255,255,.18);
-      margin-bottom:16px;
+      margin-bottom:14px;
     }
 
     .brand h1{
       margin:0;
-      font-size:25px;
+      font-size:22px;
       font-weight:900;
-      letter-spacing:.2px;
     }
 
     .brand p{
-      margin:8px 0 0;
+      margin:7px 0 0;
       color:rgba(255,255,255,.9);
-      font-size:14px;
+      font-size:13px;
       font-weight:600;
     }
 
     .nav-btn{
       width:100%;
       border:none;
-      border-radius:16px;
-      padding:15px 16px;
-      margin:8px 0;
+      border-radius:14px;
+      padding:13px 14px;
+      margin:7px 0;
       text-align:right;
       background:rgba(255,255,255,.10);
       color:#fff;
       cursor:pointer;
       font-weight:800;
-      font-size:16px;
+      font-size:15px;
       transition:.2s;
     }
 
@@ -159,6 +158,32 @@
       font-weight:900;
     }
 
+    .page-search{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:16px 18px;
+      margin-bottom:18px;
+      box-shadow:var(--shadow);
+      display:flex;
+      justify-content:flex-start;
+    }
+
+    .page-search input{
+      width:100%;
+      max-width:380px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px 14px;
+      outline:none;
+      font:inherit;
+    }
+
+    .page-search input:focus{
+      border-color:var(--primary);
+      box-shadow:0 0 0 4px rgba(24,167,168,.12);
+    }
+
     .grid{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -195,7 +220,7 @@
     .field select:focus,
     .field textarea:focus{
       border-color:var(--primary);
-      box-shadow:0 0 0 4px rgba(23,162,164,.12);
+      box-shadow:0 0 0 4px rgba(24,167,168,.12);
     }
 
     .field textarea{
@@ -210,6 +235,13 @@
       background:var(--primary-soft);
       border-radius:16px;
       padding:16px;
+    }
+
+    .upload-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
     }
 
     .upload-label{
@@ -232,6 +264,21 @@
       display:none;
     }
 
+    .mini-btn{
+      border:none;
+      border-radius:12px;
+      padding:10px 14px;
+      cursor:pointer;
+      font-weight:800;
+      font-size:14px;
+    }
+
+    .mini-btn.download{
+      background:#fff;
+      color:#344054;
+      border:1px solid var(--border);
+    }
+
     .file-list{
       margin-top:12px;
       padding:0;
@@ -246,6 +293,10 @@
       margin-top:8px;
       font-size:14px;
       color:#334155;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
     }
 
     .actions{
@@ -283,16 +334,6 @@
 
     .list-wrap{
       margin-top:20px;
-    }
-
-    .search{
-      margin-bottom:18px;
-      display:flex;
-      justify-content:flex-start;
-    }
-
-    .search input{
-      max-width:360px;
     }
 
     .record-list{
@@ -402,6 +443,10 @@
       </section>
 
       <section class="page" id="database">
+        <div class="page-search">
+          <input id="searchInput" placeholder="ابحث بالاسم أو السجل المدني أو الرقم الوظيفي" />
+        </div>
+
         <div class="card">
           <div class="tabs">
             <button class="tab-btn active" data-tab="personal">البيانات الشخصية</button>
@@ -433,21 +478,23 @@
               <div class="field"><label>الكلية</label><input id="college"></div>
 
               <div class="field"><label>القسم</label><input id="department"></div>
-              <div class="field"><label>اسم المستخدم أو الصفة</label><input id="roleName"></div>
-
               <div class="field"><label>قرار التعيين</label><input id="appointmentDecision"></div>
-              <div class="field"><label>تاريخ التعيين</label><input type="date" id="appointmentDate"></div>
 
+              <div class="field"><label>تاريخ التعيين</label><input type="date" id="appointmentDate"></div>
               <div class="field"><label>قرار ترقية محاضر</label><input id="promotionDecision"></div>
+
               <div class="field"><label>تاريخ الترقية</label><input type="date" id="promotionDate"></div>
 
               <div class="field full">
                 <label>المرفقات</label>
                 <div class="upload-box">
-                  <label class="upload-label">
-                    اختر ملفات
-                    <input type="file" id="attachments" multiple>
-                  </label>
+                  <div class="upload-actions">
+                    <label class="upload-label">
+                      تحميل مرفقات
+                      <input type="file" id="attachments" multiple>
+                    </label>
+                    <button type="button" class="mini-btn download" id="downloadAttachmentsBtn">تنزيل مرفقات</button>
+                  </div>
                   <ul class="file-list" id="fileList"></ul>
                 </div>
               </div>
@@ -519,15 +566,13 @@
             <button class="btn btn-secondary" id="editBtn">تعديل</button>
             <button class="btn btn-danger" id="deleteBtn">حذف</button>
             <button class="btn btn-light" id="clearBtn">مسح</button>
+            <button class="btn btn-outline" id="exportBtn">تصدير Excel</button>
             <button class="btn btn-outline" onclick="window.print()">طباعة</button>
           </div>
         </div>
 
         <div class="list-wrap">
           <div class="card">
-            <div class="search">
-              <input id="searchInput" placeholder="ابحث بالاسم أو السجل المدني أو الرقم الوظيفي" />
-            </div>
             <div class="section-title">سجلات قاعدة البيانات</div>
             <div class="record-list" id="recordList"></div>
           </div>
@@ -595,14 +640,50 @@
 
     const fileInput = document.getElementById("attachments");
     const fileList = document.getElementById("fileList");
+    const downloadAttachmentsBtn = document.getElementById("downloadAttachmentsBtn");
+
     let uploadedFiles = [];
     let records = [];
     let selectedId = null;
 
     fileInput.addEventListener("change", () => {
       uploadedFiles = Array.from(fileInput.files).map(f => f.name);
-      fileList.innerHTML = uploadedFiles.map(name => `<li>${name}</li>`).join("");
+      renderFiles();
       updateStats();
+    });
+
+    function renderFiles(){
+      fileList.innerHTML = uploadedFiles.map(name => `
+        <li>
+          <span>${name}</span>
+          <button type="button" class="mini-btn download" onclick="downloadSingleFile('${name.replace(/'/g, "\\'")}')">تنزيل</button>
+        </li>
+      `).join("");
+    }
+
+    window.downloadSingleFile = function(name){
+      const blob = new Blob([`اسم الملف: ${name}`], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = name.endsWith(".txt") ? name : `${name}.txt`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    downloadAttachmentsBtn.addEventListener("click", () => {
+      if (!uploadedFiles.length) {
+        alert("لا توجد مرفقات لتنزيلها");
+        return;
+      }
+      const content = uploadedFiles.join("\\n");
+      const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "attachments-list.txt";
+      a.click();
+      URL.revokeObjectURL(url);
     });
 
     function readForm() {
@@ -617,7 +698,6 @@
         employeeNo: document.getElementById("employeeNo").value,
         college: document.getElementById("college").value,
         department: document.getElementById("department").value,
-        roleName: document.getElementById("roleName").value,
         appointmentDecision: document.getElementById("appointmentDecision").value,
         appointmentDate: document.getElementById("appointmentDate").value,
         promotionDecision: document.getElementById("promotionDecision").value,
@@ -636,20 +716,19 @@
       document.getElementById("employeeNo").value = r.employeeNo || "";
       document.getElementById("college").value = r.college || "";
       document.getElementById("department").value = r.department || "";
-      document.getElementById("roleName").value = r.roleName || "";
       document.getElementById("appointmentDecision").value = r.appointmentDecision || "";
       document.getElementById("appointmentDate").value = r.appointmentDate || "";
       document.getElementById("promotionDecision").value = r.promotionDecision || "";
       document.getElementById("promotionDate").value = r.promotionDate || "";
       uploadedFiles = r.files || [];
-      fileList.innerHTML = uploadedFiles.map(name => `<li>${name}</li>`).join("");
+      renderFiles();
     }
 
     function clearForm() {
       document.querySelectorAll("#database input, #database textarea").forEach(el => el.value = "");
       document.querySelectorAll("#database select").forEach(el => el.value = "");
       uploadedFiles = [];
-      fileList.innerHTML = "";
+      renderFiles();
       selectedId = null;
     }
 
@@ -692,7 +771,7 @@
       if (!r.name || !r.civilId) return alert("أدخل اسم المبتعث والسجل المدني");
       records.unshift(r);
       clearForm();
-      renderList();
+      renderList(document.getElementById("searchInput").value.trim());
     });
 
     document.getElementById("editBtn").addEventListener("click", () => {
@@ -701,20 +780,45 @@
       if (idx === -1) return;
       records[idx] = readForm();
       clearForm();
-      renderList();
+      renderList(document.getElementById("searchInput").value.trim());
     });
 
     document.getElementById("deleteBtn").addEventListener("click", () => {
       if (!selectedId) return alert("اختر سجلًا أولًا");
       records = records.filter(x => x.id !== selectedId);
       clearForm();
-      renderList();
+      renderList(document.getElementById("searchInput").value.trim());
     });
 
     document.getElementById("clearBtn").addEventListener("click", clearForm);
 
     document.getElementById("searchInput").addEventListener("input", e => {
       renderList(e.target.value.trim());
+    });
+
+    document.getElementById("exportBtn").addEventListener("click", () => {
+      const headers = [
+        "السجل المدني","اسم المبتعث","الجنس","تاريخ الميلاد","البريد الإلكتروني","الجوال",
+        "الرقم الوظيفي","الكلية","القسم","قرار التعيين","تاريخ التعيين",
+        "قرار ترقية محاضر","تاريخ الترقية","المرفقات"
+      ];
+      const rows = records.map(r => [
+        r.civilId, r.name, r.gender, r.birthDate, r.email, r.mobile,
+        r.employeeNo, r.college, r.department, r.appointmentDecision, r.appointmentDate,
+        r.promotionDecision, r.promotionDate, (r.files || []).join(" | ")
+      ]);
+
+      const csv = [headers, ...rows]
+        .map(row => row.map(v => `"${String(v ?? "").replaceAll('"','""')}"`).join(","))
+        .join("\\n");
+
+      const blob = new Blob(["\\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "scholars-database.csv";
+      a.click();
+      URL.revokeObjectURL(url);
     });
 
     renderList();
