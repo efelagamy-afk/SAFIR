@@ -248,7 +248,6 @@
       align-items:center;
     }
 
-    /* الزرين هنا متطابقان 100% */
     .attach-btn{
       display:inline-flex;
       align-items:center;
@@ -450,7 +449,7 @@
       <div class="topbar">
         <div>
           <h2 id="pageTitle">الرئيسية</h2>
-          <small>واجهة حكومية حديثة - نسخة أولية</small>
+          <small>واجهة حكومية حديثة - قاعدة البيانات مكتملة</small>
         </div>
         <small>جامعة الجوف</small>
       </div>
@@ -544,62 +543,215 @@
           </div>
 
           <div class="tab-content" id="language">
-            <div class="section-title">اللغة</div>
+            <div class="section-title">مرحلة اللغة</div>
             <div class="grid">
-              <div class="field"><label>نوع الاختبار / اللغة</label><input id="langExam"></div>
-              <div class="field"><label>الدرجة</label><input id="langScore"></div>
-              <div class="field"><label>الجهة</label><input id="langInstitute"></div>
+              <div class="field"><label>قرار الإيفاد</label><input id="langDecision1"></div>
+              <div class="field"><label>تاريخ القرار</label><input type="date" id="langDecisionDate1"></div>
+
+              <div class="field"><label>مدة القرار</label><input id="langDuration1"></div>
+              <div class="field"><label>قرار التمديد 1</label><input id="langDecision2"></div>
+
+              <div class="field"><label>تاريخ القرار</label><input type="date" id="langDecisionDate2"></div>
+              <div class="field"><label>مدة القرار</label><input id="langDuration2"></div>
+
+              <div class="field"><label>قرار التمديد 2</label><input id="langDecision3"></div>
+              <div class="field"><label>تاريخ القرار</label><input type="date" id="langDecisionDate3"></div>
+
+              <div class="field"><label>مدة القرار</label><input id="langDuration3"></div>
+              <div class="field"><label>قرار إنهاء البعثة</label><input id="langEndDecision"></div>
+
+              <div class="field"><label>تاريخ الإنهاء</label><input type="date" id="langEndDate"></div>
+              <div class="field"><label>مدة القرار باليوم</label><input id="langDuration4"></div>
+
               <div class="field">
-                <label>الحالة</label>
-                <select id="langStatus">
+                <label>نوع الإنهاء</label>
+                <select id="langEndType">
                   <option value=""></option>
-                  <option>مكتمل</option>
-                  <option>معلق</option>
+                  <option>مباشرة</option>
+                  <option>إلغاء</option>
+                  <option>انتهاء مدة</option>
                 </select>
               </div>
-              <div class="field full"><label>ملاحظات</label><textarea id="langNotes"></textarea></div>
+              <div class="field"><label>تاريخ المباشرة</label><input type="date" id="langDirectDate"></div>
             </div>
           </div>
 
           <div class="tab-content" id="masters">
-            <div class="section-title">الماجستير</div>
+            <div class="section-title">مرحلة الماجستير</div>
             <div class="grid">
-              <div class="field"><label>الدولة</label><input id="mastersCountry"></div>
-              <div class="field"><label>الجامعة</label><input id="mastersUniversity"></div>
-              <div class="field"><label>التخصص</label><input id="mastersMajor"></div>
+              <div class="field"><label>قرار الإيفاد</label><input id="mDecision1"></div>
+              <div class="field"><label>تاريخ الإيفاد</label><input type="date" id="mDate1"></div>
+
+              <div class="field"><label>مدة القرار</label><input id="mDuration1"></div>
+              <div class="field"><label>قرار التمديد 1</label><input id="mDecision2"></div>
+
+              <div class="field"><label>تاريخ التمديد 1</label><input type="date" id="mDate2"></div>
+              <div class="field"><label>مدة القرار</label><input id="mDuration2"></div>
+
+              <div class="field"><label>قرار التمديد 2</label><input id="mDecision3"></div>
+              <div class="field"><label>تاريخ التمديد 2</label><input type="date" id="mDate3"></div>
+
+              <div class="field"><label>مدة القرار</label><input id="mDuration3"></div>
+              <div class="field"><label>قرار التمديد 3</label><input id="mDecision4"></div>
+
+              <div class="field"><label>تاريخ التمديد 3</label><input type="date" id="mDate4"></div>
+              <div class="field"><label>مدة القرار</label><input id="mDuration4"></div>
+
+              <div class="field"><label>قرار التمديد 4</label><input id="mDecision5"></div>
+              <div class="field"><label>تاريخ التمديد 4</label><input type="date" id="mDate5"></div>
+
+              <div class="field"><label>مدة القرار</label><input id="mDuration5"></div>
+              <div class="field"><label>قرار تغيير تخصص</label><input id="mChangeMajorDecision"></div>
+
+              <div class="field"><label>تاريخ تغيير تخصص</label><input type="date" id="mChangeMajorDate"></div>
+              <div class="field"><label>مدة القرار</label><input id="mDuration6"></div>
+
+              <div class="field"><label>قرار تغيير جامعة</label><input id="mChangeUniDecision"></div>
+              <div class="field"><label>تاريخ تغيير جامعة</label><input type="date" id="mChangeUniDate"></div>
+
+              <div class="field"><label>مدة القرار</label><input id="mDuration7"></div>
+              <div class="field"><label>قرار رحلة علمية</label><input id="mTripDecision"></div>
+
+              <div class="field"><label>تاريخ رحلة علمية</label><input type="date" id="mTripDate"></div>
+              <div class="field"><label>مدة القرار</label><input id="mDuration8"></div>
+
+              <div class="field"><label>قرار إنهاء البعثة</label><input id="mEndDecision"></div>
+              <div class="field"><label>تاريخ الإنهاء</label><input type="date" id="mEndDate"></div>
+
+              <div class="field"><label>مدة القرار</label><input id="mDuration9"></div>
               <div class="field">
-                <label>الحالة</label>
-                <select id="mastersStatus">
+                <label>نوع الإيفاد</label>
+                <select id="mType">
                   <option value=""></option>
-                  <option>نشط</option>
-                  <option>مبتعث جديد</option>
-                  <option>منتهي</option>
+                  <option>داخلي</option>
+                  <option>خارجي</option>
                 </select>
               </div>
-              <div class="field"><label>تاريخ البداية</label><input type="date" id="mastersStart"></div>
-              <div class="field"><label>تاريخ النهاية المتوقع</label><input type="date" id="mastersEnd"></div>
-              <div class="field full"><label>ملاحظات</label><textarea id="mastersNotes"></textarea></div>
+
+              <div class="field">
+                <label>جامعة الابتعاث</label>
+                <select id="mUni">
+                  <option value=""></option>
+                  <option>جامعة محلية</option>
+                  <option>جامعة دولية</option>
+                </select>
+              </div>
+              <div class="field"><label>ت. المباشرة</label><input type="date" id="mDirectDate"></div>
+
+              <div class="field">
+                <label>الدولة</label>
+                <select id="mCountry">
+                  <option value=""></option>
+                  <option>السعودية</option>
+                  <option>مصر</option>
+                  <option>بريطانيا</option>
+                  <option>أمريكا</option>
+                  <option>تركيا</option>
+                </select>
+              </div>
+              <div class="field"><label>ت. الحصول على الدرجة</label><input type="date" id="mDegreeDate"></div>
+
+              <div class="field">
+                <label>المرحلة</label>
+                <select id="mStage">
+                  <option value=""></option>
+                  <option>ماجستير</option>
+                </select>
+              </div>
             </div>
           </div>
 
           <div class="tab-content" id="phd">
-            <div class="section-title">الدكتوراة</div>
+            <div class="section-title">مرحلة الدكتوراة</div>
             <div class="grid">
-              <div class="field"><label>الدولة</label><input id="phdCountry"></div>
-              <div class="field"><label>الجامعة</label><input id="phdUniversity"></div>
-              <div class="field"><label>التخصص</label><input id="phdMajor"></div>
+              <div class="field"><label>قرار الإيفاد</label><input id="pDecision1"></div>
+              <div class="field"><label>تاريخ الإيفاد</label><input type="date" id="pDate1"></div>
+
+              <div class="field"><label>مدة القرار</label><input id="pDuration1"></div>
+              <div class="field"><label>قرار التمديد 1</label><input id="pDecision2"></div>
+
+              <div class="field"><label>تاريخ التمديد 1</label><input type="date" id="pDate2"></div>
+              <div class="field"><label>مدة القرار</label><input id="pDuration2"></div>
+
+              <div class="field"><label>قرار التمديد 2</label><input id="pDecision3"></div>
+              <div class="field"><label>تاريخ التمديد 2</label><input type="date" id="pDate3"></div>
+
+              <div class="field"><label>مدة القرار</label><input id="pDuration3"></div>
+              <div class="field"><label>قرار التمديد 3</label><input id="pDecision4"></div>
+
+              <div class="field"><label>تاريخ التمديد 3</label><input type="date" id="pDate4"></div>
+              <div class="field"><label>مدة القرار</label><input id="pDuration4"></div>
+
+              <div class="field"><label>قرار التمديد 4</label><input id="pDecision5"></div>
+              <div class="field"><label>تاريخ التمديد 4</label><input type="date" id="pDate5"></div>
+
+              <div class="field"><label>مدة القرار</label><input id="pDuration5"></div>
+              <div class="field"><label>قرار التمديد 5</label><input id="pDecision6"></div>
+
+              <div class="field"><label>تاريخ التمديد 5</label><input type="date" id="pDate6"></div>
+              <div class="field"><label>مدة القرار</label><input id="pDuration6"></div>
+
+              <div class="field"><label>قرار التمديد 6</label><input id="pDecision7"></div>
+              <div class="field"><label>تاريخ التمديد 6</label><input type="date" id="pDate7"></div>
+
+              <div class="field"><label>مدة القرار</label><input id="pDuration7"></div>
+              <div class="field"><label>قرار تغيير تخصص</label><input id="pChangeMajorDecision"></div>
+
+              <div class="field"><label>تاريخ تغيير تخصص</label><input type="date" id="pChangeMajorDate"></div>
+              <div class="field"><label>مدة القرار</label><input id="pDuration8"></div>
+
+              <div class="field"><label>قرار تغيير جامعة</label><input id="pChangeUniDecision"></div>
+              <div class="field"><label>تاريخ تغيير جامعة</label><input type="date" id="pChangeUniDate"></div>
+
+              <div class="field"><label>مدة القرار</label><input id="pDuration9"></div>
+              <div class="field"><label>قرار رحلة علمية</label><input id="pTripDecision"></div>
+
+              <div class="field"><label>تاريخ رحلة علمية</label><input type="date" id="pTripDate"></div>
+              <div class="field"><label>مدة القرار</label><input id="pDuration10"></div>
+
+              <div class="field"><label>قرار إنهاء البعثة</label><input id="pEndDecision"></div>
+              <div class="field"><label>تاريخ الإنهاء</label><input type="date" id="pEndDate"></div>
+
+              <div class="field"><label>مدة القرار</label><input id="pDuration11"></div>
               <div class="field">
-                <label>الحالة</label>
-                <select id="phdStatus">
+                <label>نوع الإيفاد</label>
+                <select id="pType">
                   <option value=""></option>
-                  <option>نشط</option>
-                  <option>مبتعث جديد</option>
-                  <option>منتهي</option>
+                  <option>داخلي</option>
+                  <option>خارجي</option>
                 </select>
               </div>
-              <div class="field"><label>تاريخ البداية</label><input type="date" id="phdStart"></div>
-              <div class="field"><label>تاريخ النهاية المتوقع</label><input type="date" id="phdEnd"></div>
-              <div class="field full"><label>ملاحظات</label><textarea id="phdNotes"></textarea></div>
+
+              <div class="field">
+                <label>جامعة الابتعاث</label>
+                <select id="pUni">
+                  <option value=""></option>
+                  <option>جامعة محلية</option>
+                  <option>جامعة دولية</option>
+                </select>
+              </div>
+              <div class="field"><label>ت. المباشرة</label><input type="date" id="pDirectDate"></div>
+
+              <div class="field">
+                <label>الدولة</label>
+                <select id="pCountry">
+                  <option value=""></option>
+                  <option>السعودية</option>
+                  <option>مصر</option>
+                  <option>بريطانيا</option>
+                  <option>أمريكا</option>
+                  <option>تركيا</option>
+                </select>
+              </div>
+              <div class="field"><label>ت. الحصول على الدرجة</label><input type="date" id="pDegreeDate"></div>
+
+              <div class="field">
+                <label>المرحلة</label>
+                <select id="pStage">
+                  <option value=""></option>
+                  <option>دكتوراة</option>
+                </select>
+              </div>
             </div>
           </div>
 
@@ -624,28 +776,28 @@
       <section class="page" id="scholarship">
         <div class="card">
           <div class="section-title">ابتعاث</div>
-          <p>الخطوة التالية بعد اعتماد صفحة قاعدة البيانات.</p>
+          <p>جاهز بعد ذلك للاستكمال.</p>
         </div>
       </section>
 
       <section class="page" id="financial">
         <div class="card">
           <div class="section-title">ضمان مالي</div>
-          <p>الخطوة التالية بعد اعتماد صفحة قاعدة البيانات.</p>
+          <p>جاهز بعد ذلك للاستكمال.</p>
         </div>
       </section>
 
       <section class="page" id="onboarding">
         <div class="card">
           <div class="section-title">مباشرات</div>
-          <p>الخطوة التالية بعد اعتماد صفحة قاعدة البيانات.</p>
+          <p>جاهز بعد ذلك للاستكمال.</p>
         </div>
       </section>
 
       <section class="page" id="statistics">
         <div class="card">
           <div class="section-title">إحصائيات</div>
-          <p>الخطوة التالية بعد اعتماد صفحة قاعدة البيانات.</p>
+          <p>جاهز بعد ذلك للاستكمال.</p>
         </div>
       </section>
     </main>
