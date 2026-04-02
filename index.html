@@ -1,183 +1,1282 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>نظام سفير الجوف</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>سفير الجوف</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#18a7a8;
+      --primary-dark:#107e7f;
+      --primary-soft:#e8f8f8;
+      --bg:#f4f7f8;
+      --panel:#ffffff;
+      --border:#d9e4e7;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --gray-soft:#eef3f4;
+      --danger:#d92d20;
+      --blue:#2f6fed;
+      --shadow:0 10px 30px rgba(15, 23, 42, 0.05);
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    *{box-sizing:border-box}
 
-<style>
-body {
-    font-family: 'Cairo', sans-serif;
-    background: #f5f7f8;
-    margin:0;
-}
+    body{
+      margin:0;
+      font-family:"Cairo","Segoe UI",Tahoma,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
 
-.container {
-    width: 90%;
-    margin: auto;
-}
+    .layout{
+      display:grid;
+      grid-template-columns:270px 1fr;
+      min-height:100vh;
+    }
 
-h2 {
-    color:#0d9488;
-    margin-bottom:20px;
-}
+    .sidebar{
+      background:linear-gradient(180deg,var(--primary),var(--primary-dark));
+      color:#fff;
+      padding:22px 16px;
+      box-shadow:0 0 20px rgba(0,0,0,.08);
+    }
 
-.section {
-    background:white;
-    padding:20px;
-    border-radius:12px;
-    margin-bottom:20px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.05);
-}
+    .brand{
+      padding:12px 12px 22px;
+      border-bottom:1px solid rgba(255,255,255,.18);
+      margin-bottom:16px;
+    }
 
-.grid {
-    display:grid;
-    grid-template-columns: repeat(2,1fr);
-    gap:15px;
-}
+    .brand h1{
+      margin:0;
+      font-size:24px;
+      font-weight:900;
+    }
 
-label {
-    font-size:14px;
-    color:#444;
-}
+    .brand p{
+      margin:8px 0 0;
+      color:rgba(255,255,255,.9);
+      font-size:14px;
+      font-weight:600;
+    }
 
-input, select {
-    width:100%;
-    padding:10px;
-    border-radius:8px;
-    border:1px solid #ddd;
-    margin-top:5px;
-}
+    .nav-btn{
+      width:100%;
+      border:none;
+      border-radius:16px;
+      padding:15px 16px;
+      margin:8px 0;
+      text-align:right;
+      background:rgba(255,255,255,.10);
+      color:#fff;
+      cursor:pointer;
+      font-weight:800;
+      font-size:17px;
+      transition:.2s;
+      font-family:inherit;
+    }
 
-.btn {
-    padding:10px 18px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:600;
-}
+    .nav-btn:hover,
+    .nav-btn.active{
+      background:#fff;
+      color:var(--primary-dark);
+      transform:translateY(-1px);
+    }
 
-.btn-main { background:#0d9488; color:white; }
-.btn-danger { background:#dc2626; color:white; }
-.btn-gray { background:#e5e7eb; }
+    .main{
+      padding:24px;
+    }
 
-.extensions {
-    margin-top:15px;
-}
+    .topbar{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:20px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:18px;
+      box-shadow:var(--shadow);
+    }
 
-.extension-card {
-    background:#f0fdfa;
-    padding:15px;
-    border-radius:10px;
-    margin-bottom:10px;
-}
+    .topbar h2{
+      margin:0;
+      color:var(--primary-dark);
+      font-size:28px;
+      font-weight:900;
+    }
 
-.flex {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-</style>
+    .topbar small{
+      color:var(--muted);
+      font-size:13px;
+      font-weight:600;
+    }
+
+    .page{display:none}
+    .page.active{display:block}
+
+    .card{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+
+    .tabs{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:22px;
+    }
+
+    .tab-btn{
+      border:none;
+      background:#edf3f4;
+      color:#334155;
+      padding:12px 18px;
+      border-radius:14px;
+      cursor:pointer;
+      font-weight:800;
+      font-size:14px;
+      transition:.2s;
+      font-family:inherit;
+    }
+
+    .tab-btn.active{
+      background:var(--primary);
+      color:#fff;
+      box-shadow:0 6px 16px rgba(23,162,164,.22);
+    }
+
+    .tab-content{display:none}
+    .tab-content.active{display:block}
+
+    .section-title{
+      margin:4px 0 18px;
+      font-size:21px;
+      color:var(--primary-dark);
+      font-weight:900;
+    }
+
+    .subsection-title{
+      margin:20px 0 14px;
+      font-size:17px;
+      color:#0f6b6c;
+      font-weight:900;
+    }
+
+    .page-search{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:16px 18px;
+      margin-bottom:18px;
+      box-shadow:var(--shadow);
+      display:flex;
+      justify-content:flex-start;
+    }
+
+    .page-search input{
+      width:100%;
+      max-width:380px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px 14px;
+      outline:none;
+      font:inherit;
+      font-family:inherit;
+    }
+
+    .page-search input:focus{
+      border-color:var(--primary);
+      box-shadow:0 0 0 4px rgba(24,167,168,.12);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .field label{
+      font-size:13px;
+      font-weight:800;
+      color:#334155;
+    }
+
+    .field input,
+    .field select,
+    .field textarea{
+      width:100%;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px 14px;
+      background:#fff;
+      font:inherit;
+      color:var(--text);
+      outline:none;
+      transition:.2s;
+      font-family:inherit;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus{
+      border-color:var(--primary);
+      box-shadow:0 0 0 4px rgba(24,167,168,.12);
+    }
+
+    .field textarea{
+      min-height:110px;
+      resize:vertical;
+    }
+
+    .full{grid-column:1 / -1}
+
+    .upload-box{
+      border:1px dashed #9fd7d8;
+      background:var(--primary-soft);
+      border-radius:16px;
+      padding:16px;
+    }
+
+    .upload-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .attach-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:170px;
+      height:48px;
+      padding:0 18px;
+      border-radius:14px;
+      cursor:pointer;
+      font-family:inherit;
+      font-size:15px;
+      font-weight:800;
+      line-height:1;
+      transition:.2s;
+      text-decoration:none;
+      box-sizing:border-box;
+    }
+
+    .attach-btn:hover{
+      transform:translateY(-1px);
+      opacity:.97;
+    }
+
+    .attach-btn.primary{
+      background:var(--primary-dark);
+      color:#fff;
+      border:1px solid var(--primary-dark);
+    }
+
+    .attach-btn.secondary{
+      background:#fff;
+      color:#344054;
+      border:1px solid var(--border);
+    }
+
+    .upload-label input{
+      display:none;
+    }
+
+    .file-list{
+      margin-top:12px;
+      padding:0;
+      list-style:none;
+    }
+
+    .file-list li{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:10px 12px;
+      margin-top:8px;
+      font-size:14px;
+      color:#334155;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+    }
+
+    .file-chip-btn{
+      border:1px solid var(--border);
+      background:#fff;
+      color:#344054;
+      border-radius:10px;
+      padding:8px 12px;
+      font-family:inherit;
+      font-size:13px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .stage-box{
+      margin-top:18px;
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:16px;
+      background:#fcfefe;
+    }
+
+    .extension-list{
+      display:grid;
+      gap:14px;
+      margin-top:14px;
+    }
+
+    .extension-card{
+      border:1px solid #cde9ea;
+      background:#f7fcfc;
+      border-radius:16px;
+      padding:14px;
+    }
+
+    .extension-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:12px;
+    }
+
+    .extension-head h4{
+      margin:0;
+      color:#0f6b6c;
+      font-size:15px;
+      font-weight:900;
+    }
+
+    .small-btn{
+      border:none;
+      background:#fff;
+      border:1px solid var(--border);
+      color:#344054;
+      border-radius:10px;
+      padding:8px 12px;
+      cursor:pointer;
+      font-family:inherit;
+      font-size:13px;
+      font-weight:800;
+    }
+
+    .small-btn.danger{
+      background:#fff5f5;
+      border-color:#fecaca;
+      color:#b42318;
+    }
+
+    .actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:22px;
+      padding-top:18px;
+      border-top:1px solid var(--border);
+      justify-content:flex-end;
+    }
+
+    .btn{
+      border:none;
+      border-radius:16px;
+      padding:12px 20px;
+      cursor:pointer;
+      font-weight:900;
+      font-size:15px;
+      min-width:98px;
+      transition:.2s;
+      box-shadow:0 4px 12px rgba(15,23,42,.06);
+      font-family:inherit;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      opacity:.97;
+    }
+
+    .btn-primary{background:var(--primary-dark); color:#fff}
+    .btn-secondary{background:var(--blue); color:#fff}
+    .btn-danger{background:var(--danger); color:#fff}
+    .btn-light{background:var(--gray-soft); color:#344054}
+    .btn-outline{background:#fff; color:#344054; border:1px solid var(--border)}
+
+    .list-wrap{
+      margin-top:20px;
+    }
+
+    .record-list{
+      display:grid;
+      gap:12px;
+    }
+
+    .record{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      box-shadow:0 4px 12px rgba(15,23,42,.03);
+    }
+
+    .record.active{
+      border-color:var(--primary);
+      background:#f5fbfb;
+    }
+
+    .record h4{
+      margin:0 0 6px;
+      font-size:15px;
+      font-weight:900;
+    }
+
+    .record p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.7;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }
+
+    .stat{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:18px;
+      box-shadow:var(--shadow);
+    }
+
+    .stat h3{
+      margin:0 0 10px;
+      font-size:13px;
+      color:var(--muted);
+      font-weight:800;
+    }
+
+    .stat .num{
+      font-size:28px;
+      font-weight:900;
+      color:var(--primary-dark);
+    }
+
+    @media (max-width: 980px){
+      .layout{grid-template-columns:1fr}
+      .sidebar{position:static}
+      .main{padding:14px}
+      .grid{grid-template-columns:1fr}
+      .stats{grid-template-columns:1fr 1fr}
+      .topbar{flex-direction:column;gap:10px;align-items:flex-start}
+    }
+  </style>
 </head>
-
 <body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>سفير الجوف</h1>
+        <p>نظام إدارة المبتعثين</p>
+      </div>
 
-<div class="container">
+      <button class="nav-btn active" data-page="dashboard">الرئيسية</button>
+      <button class="nav-btn" data-page="database">قاعدة بيانات المبتعثين</button>
+      <button class="nav-btn" data-page="scholarship">ابتعاث</button>
+      <button class="nav-btn" data-page="financial">ضمان مالي</button>
+      <button class="nav-btn" data-page="onboarding">مباشرات</button>
+      <button class="nav-btn" data-page="statistics">إحصائيات</button>
+    </aside>
 
-<h2>🎓 مرحلة الماجستير (الابتعاث)</h2>
-
-<div class="section">
-
-<div class="grid">
-<div>
-<label>قرار الابتعاث</label>
-<input>
-</div>
-
-<div>
-<label>تاريخ الابتعاث</label>
-<input type="date">
-</div>
-
-<div>
-<label>مدة القرار</label>
-<input>
-</div>
-
-<div>
-<label>نوع الابتعاث</label>
-<select>
-<option>داخلي</option>
-<option>خارجي</option>
-</select>
-</div>
-</div>
-
-<h3>التمديدات</h3>
-
-<div id="extensions" class="extensions"></div>
-
-<button class="btn btn-main" onclick="addExtension()">+ إضافة تمديد</button>
-
-</div>
-
-</div>
-
-<script>
-
-let extensionCount = 0;
-
-function addExtension(data = null){
-
-    extensionCount++;
-
-    let div = document.createElement("div");
-    div.className = "extension-card";
-
-    div.innerHTML = `
-    <div class="flex">
-        <strong>تمديد ${extensionCount}</strong>
-        <button class="btn btn-danger" onclick="this.parentElement.parentElement.remove()">حذف</button>
-    </div>
-
-    <div class="grid">
+    <main class="main">
+      <div class="topbar">
         <div>
+          <h2 id="pageTitle">الرئيسية</h2>
+          <small>اللغة + الماجستير + الدكتوراة بالتمديدات الديناميكية</small>
+        </div>
+        <small>جامعة الجوف</small>
+      </div>
+
+      <section class="page active" id="dashboard">
+        <div class="stats">
+          <div class="stat"><h3>إجمالي المبتعثين</h3><div class="num" id="st1">0</div></div>
+          <div class="stat"><h3>الضمانات المالية</h3><div class="num" id="st2">0</div></div>
+          <div class="stat"><h3>المباشرات</h3><div class="num" id="st3">0</div></div>
+          <div class="stat"><h3>الملفات المرفوعة</h3><div class="num" id="st4">0</div></div>
+        </div>
+      </section>
+
+      <section class="page" id="database">
+        <div class="page-search">
+          <input id="searchInput" placeholder="ابحث بالاسم أو السجل المدني أو الرقم الوظيفي" />
+        </div>
+
+        <div class="card">
+          <div class="tabs">
+            <button class="tab-btn active" data-tab="personal">البيانات الشخصية</button>
+            <button class="tab-btn" data-tab="language">اللغة</button>
+            <button class="tab-btn" data-tab="masters">الماجستير</button>
+            <button class="tab-btn" data-tab="phd">الدكتوراة</button>
+          </div>
+
+          <!-- البيانات الشخصية -->
+          <div class="tab-content active" id="personal">
+            <div class="section-title">البيانات الشخصية</div>
+            <div class="grid">
+              <div class="field"><label>السجل المدني</label><input id="civilId"></div>
+              <div class="field"><label>اسم المبتعث</label><input id="name"></div>
+
+              <div class="field">
+                <label>الجنس</label>
+                <select id="gender">
+                  <option value=""></option>
+                  <option>ذكر</option>
+                  <option>أنثى</option>
+                </select>
+              </div>
+              <div class="field"><label>تاريخ الميلاد</label><input type="date" id="birthDate"></div>
+
+              <div class="field"><label>البريد الإلكتروني</label><input id="email"></div>
+              <div class="field"><label>الجوال</label><input id="mobile"></div>
+
+              <div class="field"><label>الرقم الوظيفي</label><input id="employeeNo"></div>
+              <div class="field">
+                <label>الكلية</label>
+                <select id="college">
+                  <option value=""></option>
+                  <option>كلية الطب</option>
+                  <option>كلية طب الأسنان</option>
+                  <option>كلية الصيدلة</option>
+                  <option>كلية العلوم الطبية التطبيقية</option>
+                  <option>كلية التمريض</option>
+                  <option>كلية العلوم</option>
+                  <option>كلية الهندسة</option>
+                  <option>كلية الحاسب والمعلومات</option>
+                  <option>كلية الأعمال</option>
+                  <option>كلية الشريعة والقانون</option>
+                  <option>كلية الآداب</option>
+                  <option>كلية التربية</option>
+                  <option>كلية العلوم والآداب بالقريات</option>
+                  <option>كلية العلوم والآداب بطبرجل</option>
+                  <option>كلية العلوم والآداب بسكاكا</option>
+                </select>
+              </div>
+
+              <div class="field"><label>القسم</label><input id="department"></div>
+              <div class="field"><label>قرار التعيين</label><input id="appointmentDecision"></div>
+
+              <div class="field"><label>تاريخ التعيين</label><input type="date" id="appointmentDate"></div>
+              <div class="field"><label>قرار ترقية محاضر</label><input id="promotionDecision"></div>
+
+              <div class="field"><label>تاريخ الترقية</label><input type="date" id="promotionDate"></div>
+
+              <div class="field full">
+                <label>المرفقات</label>
+                <div class="upload-box">
+                  <div class="upload-actions">
+                    <label class="attach-btn primary upload-label">
+                      تحميل مرفقات
+                      <input type="file" id="attachments" multiple>
+                    </label>
+                    <button type="button" class="attach-btn secondary" id="downloadAttachmentsBtn">تنزيل مرفقات</button>
+                  </div>
+                  <ul class="file-list" id="fileList"></ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- اللغة -->
+          <div class="tab-content" id="language">
+            <div class="section-title">مرحلة اللغة</div>
+            <div class="grid">
+              <div class="field"><label>قرار الابتعاث</label><input id="langBaseDecision"></div>
+              <div class="field"><label>تاريخ القرار</label><input type="date" id="langBaseDate"></div>
+
+              <div class="field"><label>مدة القرار</label><input id="langBaseDuration"></div>
+              <div class="field"><label>قرار إنهاء البعثة</label><input id="langEndDecision"></div>
+
+              <div class="field"><label>تاريخ الإنهاء</label><input type="date" id="langEndDate"></div>
+              <div class="field">
+                <label>نوع الإنهاء</label>
+                <select id="langEndType">
+                  <option value=""></option>
+                  <option>مباشرة</option>
+                  <option>إلغاء</option>
+                  <option>انتهاء مدة</option>
+                </select>
+              </div>
+
+              <div class="field"><label>تاريخ المباشرة</label><input type="date" id="langDirectDate"></div>
+            </div>
+
+            <div class="stage-box">
+              <div class="subsection-title">التمديدات</div>
+              <div id="langExtensions" class="extension-list"></div>
+              <button type="button" class="btn btn-outline" onclick="addExtension('lang')">إضافة تمديد</button>
+            </div>
+          </div>
+
+          <!-- الماجستير -->
+          <div class="tab-content" id="masters">
+            <div class="section-title">مرحلة الماجستير</div>
+            <div class="grid">
+              <div class="field"><label>قرار الابتعاث</label><input id="mBaseDecision"></div>
+              <div class="field"><label>تاريخ الابتعاث</label><input type="date" id="mBaseDate"></div>
+
+              <div class="field"><label>مدة القرار</label><input id="mBaseDuration"></div>
+              <div class="field">
+                <label>نوع الابتعاث</label>
+                <select id="mType">
+                  <option value=""></option>
+                  <option>داخلي</option>
+                  <option>خارجي</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label>جامعة الابتعاث</label>
+                <input id="mUniversity">
+              </div>
+              <div class="field">
+                <label>الدولة</label>
+                <select id="mCountry">
+                  <option value=""></option>
+                  <option>السعودية</option>
+                  <option>مصر</option>
+                  <option>بريطانيا</option>
+                  <option>أمريكا</option>
+                  <option>تركيا</option>
+                  <option>ماليزيا</option>
+                </select>
+              </div>
+
+              <div class="field"><label>قرار تغيير تخصص</label><input id="mChangeMajorDecision"></div>
+              <div class="field"><label>تاريخ تغيير تخصص</label><input type="date" id="mChangeMajorDate"></div>
+
+              <div class="field"><label>قرار تغيير جامعة</label><input id="mChangeUniDecision"></div>
+              <div class="field"><label>تاريخ تغيير جامعة</label><input type="date" id="mChangeUniDate"></div>
+
+              <div class="field"><label>قرار رحلة علمية</label><input id="mTripDecision"></div>
+              <div class="field"><label>تاريخ رحلة علمية</label><input type="date" id="mTripDate"></div>
+
+              <div class="field"><label>قرار إنهاء البعثة</label><input id="mEndDecision"></div>
+              <div class="field"><label>تاريخ الإنهاء</label><input type="date" id="mEndDate"></div>
+
+              <div class="field">
+                <label>نوع الإنهاء</label>
+                <select id="mEndType">
+                  <option value=""></option>
+                  <option>مباشرة</option>
+                  <option>إلغاء</option>
+                  <option>انتهاء مدة</option>
+                </select>
+              </div>
+              <div class="field"><label>تاريخ المباشرة</label><input type="date" id="mDirectDate"></div>
+
+              <div class="field"><label>تاريخ الحصول على الدرجة</label><input type="date" id="mDegreeDate"></div>
+              <div class="field">
+                <label>المرحلة</label>
+                <select id="mStage">
+                  <option value=""></option>
+                  <option>ماجستير</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="stage-box">
+              <div class="subsection-title">التمديدات</div>
+              <div id="mastersExtensions" class="extension-list"></div>
+              <button type="button" class="btn btn-outline" onclick="addExtension('masters')">إضافة تمديد</button>
+            </div>
+          </div>
+
+          <!-- الدكتوراة -->
+          <div class="tab-content" id="phd">
+            <div class="section-title">مرحلة الدكتوراة</div>
+            <div class="grid">
+              <div class="field"><label>قرار الابتعاث</label><input id="pBaseDecision"></div>
+              <div class="field"><label>تاريخ الابتعاث</label><input type="date" id="pBaseDate"></div>
+
+              <div class="field"><label>مدة القرار</label><input id="pBaseDuration"></div>
+              <div class="field">
+                <label>نوع الابتعاث</label>
+                <select id="pType">
+                  <option value=""></option>
+                  <option>داخلي</option>
+                  <option>خارجي</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label>جامعة الابتعاث</label>
+                <input id="pUniversity">
+              </div>
+              <div class="field">
+                <label>الدولة</label>
+                <select id="pCountry">
+                  <option value=""></option>
+                  <option>السعودية</option>
+                  <option>مصر</option>
+                  <option>بريطانيا</option>
+                  <option>أمريكا</option>
+                  <option>تركيا</option>
+                  <option>ماليزيا</option>
+                </select>
+              </div>
+
+              <div class="field"><label>قرار تغيير تخصص</label><input id="pChangeMajorDecision"></div>
+              <div class="field"><label>تاريخ تغيير تخصص</label><input type="date" id="pChangeMajorDate"></div>
+
+              <div class="field"><label>قرار تغيير جامعة</label><input id="pChangeUniDecision"></div>
+              <div class="field"><label>تاريخ تغيير جامعة</label><input type="date" id="pChangeUniDate"></div>
+
+              <div class="field"><label>قرار رحلة علمية</label><input id="pTripDecision"></div>
+              <div class="field"><label>تاريخ رحلة علمية</label><input type="date" id="pTripDate"></div>
+
+              <div class="field"><label>قرار إنهاء البعثة</label><input id="pEndDecision"></div>
+              <div class="field"><label>تاريخ الإنهاء</label><input type="date" id="pEndDate"></div>
+
+              <div class="field">
+                <label>نوع الإنهاء</label>
+                <select id="pEndType">
+                  <option value=""></option>
+                  <option>مباشرة</option>
+                  <option>إلغاء</option>
+                  <option>انتهاء مدة</option>
+                </select>
+              </div>
+              <div class="field"><label>تاريخ المباشرة</label><input type="date" id="pDirectDate"></div>
+
+              <div class="field"><label>تاريخ الحصول على الدرجة</label><input type="date" id="pDegreeDate"></div>
+              <div class="field">
+                <label>المرحلة</label>
+                <select id="pStage">
+                  <option value=""></option>
+                  <option>دكتوراة</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="stage-box">
+              <div class="subsection-title">التمديدات</div>
+              <div id="phdExtensions" class="extension-list"></div>
+              <button type="button" class="btn btn-outline" onclick="addExtension('phd')">إضافة تمديد</button>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-primary" id="addBtn">إضافة</button>
+            <button class="btn btn-secondary" id="editBtn">تعديل</button>
+            <button class="btn btn-danger" id="deleteBtn">حذف</button>
+            <button class="btn btn-light" id="clearBtn">مسح</button>
+            <button class="btn btn-outline" id="exportBtn">تصدير Excel</button>
+            <button class="btn btn-outline" onclick="window.print()">طباعة</button>
+          </div>
+        </div>
+
+        <div class="list-wrap">
+          <div class="card">
+            <div class="section-title">سجلات قاعدة البيانات</div>
+            <div class="record-list" id="recordList"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="scholarship">
+        <div class="card">
+          <div class="section-title">ابتعاث</div>
+          <p>جاهز للاستكمال بعد اعتماد هذا الهيكل.</p>
+        </div>
+      </section>
+
+      <section class="page" id="financial">
+        <div class="card">
+          <div class="section-title">ضمان مالي</div>
+          <p>جاهز للاستكمال بعد اعتماد هذا الهيكل.</p>
+        </div>
+      </section>
+
+      <section class="page" id="onboarding">
+        <div class="card">
+          <div class="section-title">مباشرات</div>
+          <p>جاهز للاستكمال بعد اعتماد هذا الهيكل.</p>
+        </div>
+      </section>
+
+      <section class="page" id="statistics">
+        <div class="card">
+          <div class="section-title">إحصائيات</div>
+          <p>جاهز للاستكمال بعد اعتماد هذا الهيكل.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const navButtons = document.querySelectorAll(".nav-btn");
+    const pages = document.querySelectorAll(".page");
+    const pageTitle = document.getElementById("pageTitle");
+
+    navButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        navButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const page = btn.dataset.page;
+        pages.forEach(p => p.classList.remove("active"));
+        document.getElementById(page).classList.add("active");
+        pageTitle.textContent = btn.textContent.trim();
+      });
+    });
+
+    const tabButtons = document.querySelectorAll(".tab-btn");
+    const tabContents = document.querySelectorAll(".tab-content");
+
+    tabButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        tabButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const tab = btn.dataset.tab;
+        tabContents.forEach(c => c.classList.remove("active"));
+        document.getElementById(tab).classList.add("active");
+      });
+    });
+
+    const fileInput = document.getElementById("attachments");
+    const fileList = document.getElementById("fileList");
+    const downloadAttachmentsBtn = document.getElementById("downloadAttachmentsBtn");
+
+    let uploadedFiles = [];
+    let records = [];
+    let selectedId = null;
+
+    let stageCounters = {
+      lang: 0,
+      masters: 0,
+      phd: 0
+    };
+
+    fileInput.addEventListener("change", () => {
+      uploadedFiles = Array.from(fileInput.files).map(f => f.name);
+      renderFiles();
+      updateStats();
+    });
+
+    function renderFiles(){
+      fileList.innerHTML = uploadedFiles.map(name => `
+        <li>
+          <span>${name}</span>
+          <button type="button" class="file-chip-btn" onclick="downloadSingleFile('${name.replace(/'/g, "\\'")}')">تنزيل</button>
+        </li>
+      `).join("");
+    }
+
+    window.downloadSingleFile = function(name){
+      const blob = new Blob([`اسم الملف: ${name}`], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = name.endsWith(".txt") ? name : `${name}.txt`;
+      a.click();
+      URL.revokeObjectURL(url);
+    };
+
+    downloadAttachmentsBtn.addEventListener("click", () => {
+      if (!uploadedFiles.length) {
+        alert("لا توجد مرفقات لتنزيلها");
+        return;
+      }
+      const content = uploadedFiles.join("\n");
+      const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "attachments-list.txt";
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    function extensionContainerId(stage){
+      if(stage === "lang") return "langExtensions";
+      if(stage === "masters") return "mastersExtensions";
+      return "phdExtensions";
+    }
+
+    function stageLabel(stage){
+      if(stage === "lang") return "تمديد اللغة";
+      if(stage === "masters") return "تمديد الماجستير";
+      return "تمديد الدكتوراة";
+    }
+
+    function addExtension(stage, data = null){
+      stageCounters[stage] += 1;
+      const container = document.getElementById(extensionContainerId(stage));
+      const number = data?.number || stageCounters[stage];
+      const uid = `${stage}-${Date.now()}-${Math.floor(Math.random()*10000)}`;
+
+      const card = document.createElement("div");
+      card.className = "extension-card";
+      card.dataset.stage = stage;
+      card.dataset.number = number;
+      card.dataset.uid = uid;
+
+      card.innerHTML = `
+        <div class="extension-head">
+          <h4>${stageLabel(stage)} ${number}</h4>
+          <button type="button" class="small-btn danger" onclick="removeExtension('${uid}','${stage}')">حذف</button>
+        </div>
+        <div class="grid">
+          <div class="field">
             <label>قرار التمديد</label>
-            <input value="${data?.decision || ''}">
-        </div>
-
-        <div>
+            <input class="ext-decision" value="${data?.decision || ""}">
+          </div>
+          <div class="field">
             <label>تاريخ التمديد</label>
-            <input type="date" value="${data?.date || ''}">
-        </div>
-
-        <div>
+            <input type="date" class="ext-date" value="${data?.date || ""}">
+          </div>
+          <div class="field">
             <label>مدة القرار</label>
-            <input value="${data?.duration || ''}">
+            <input class="ext-duration" value="${data?.duration || ""}">
+          </div>
         </div>
-    </div>
-    `;
+      `;
+      container.appendChild(card);
+    }
 
-    document.getElementById("extensions").appendChild(div);
-}
+    window.removeExtension = function(uid, stage){
+      const item = document.querySelector(`[data-uid="${uid}"]`);
+      if(item) item.remove();
+      refreshExtensionTitles(stage);
+    };
 
+    function refreshExtensionTitles(stage){
+      const container = document.getElementById(extensionContainerId(stage));
+      const cards = container.querySelectorAll(".extension-card");
+      cards.forEach((card, index) => {
+        const number = index + 1;
+        card.dataset.number = number;
+        const title = card.querySelector(".extension-head h4");
+        if(title) title.textContent = `${stageLabel(stage)} ${number}`;
+      });
+      stageCounters[stage] = cards.length;
+    }
 
-/* مثال لمحاكاة البحث واستدعاء البيانات */
-function loadData(){
+    function clearExtensions(stage){
+      const container = document.getElementById(extensionContainerId(stage));
+      container.innerHTML = "";
+      stageCounters[stage] = 0;
+    }
 
-    let saved = [
-        {decision:"قرار 1", date:"2023-01-01", duration:"6 شهور"},
-        {decision:"قرار 2", date:"2024-01-01", duration:"1 سنة"}
-    ];
+    function collectExtensions(stage){
+      const container = document.getElementById(extensionContainerId(stage));
+      const cards = [...container.querySelectorAll(".extension-card")];
+      return cards.map((card, index) => ({
+        number: index + 1,
+        decision: card.querySelector(".ext-decision")?.value || "",
+        date: card.querySelector(".ext-date")?.value || "",
+        duration: card.querySelector(".ext-duration")?.value || ""
+      }));
+    }
 
-    saved.forEach(e => addExtension(e));
-}
+    function fillExtensions(stage, items){
+      clearExtensions(stage);
+      if(items && items.length){
+        items.forEach(item => addExtension(stage, item));
+      } else {
+        addExtension(stage);
+      }
+    }
 
-// شغل التجربة
-loadData();
+    function readForm() {
+      return {
+        id: selectedId || Date.now(),
+        personal: {
+          civilId: document.getElementById("civilId").value,
+          name: document.getElementById("name").value,
+          gender: document.getElementById("gender").value,
+          birthDate: document.getElementById("birthDate").value,
+          email: document.getElementById("email").value,
+          mobile: document.getElementById("mobile").value,
+          employeeNo: document.getElementById("employeeNo").value,
+          college: document.getElementById("college").value,
+          department: document.getElementById("department").value,
+          appointmentDecision: document.getElementById("appointmentDecision").value,
+          appointmentDate: document.getElementById("appointmentDate").value,
+          promotionDecision: document.getElementById("promotionDecision").value,
+          promotionDate: document.getElementById("promotionDate").value,
+          files: [...uploadedFiles]
+        },
+        language: {
+          baseDecision: document.getElementById("langBaseDecision").value,
+          baseDate: document.getElementById("langBaseDate").value,
+          baseDuration: document.getElementById("langBaseDuration").value,
+          endDecision: document.getElementById("langEndDecision").value,
+          endDate: document.getElementById("langEndDate").value,
+          endType: document.getElementById("langEndType").value,
+          directDate: document.getElementById("langDirectDate").value,
+          extensions: collectExtensions("lang")
+        },
+        masters: {
+          baseDecision: document.getElementById("mBaseDecision").value,
+          baseDate: document.getElementById("mBaseDate").value,
+          baseDuration: document.getElementById("mBaseDuration").value,
+          type: document.getElementById("mType").value,
+          university: document.getElementById("mUniversity").value,
+          country: document.getElementById("mCountry").value,
+          changeMajorDecision: document.getElementById("mChangeMajorDecision").value,
+          changeMajorDate: document.getElementById("mChangeMajorDate").value,
+          changeUniDecision: document.getElementById("mChangeUniDecision").value,
+          changeUniDate: document.getElementById("mChangeUniDate").value,
+          tripDecision: document.getElementById("mTripDecision").value,
+          tripDate: document.getElementById("mTripDate").value,
+          endDecision: document.getElementById("mEndDecision").value,
+          endDate: document.getElementById("mEndDate").value,
+          endType: document.getElementById("mEndType").value,
+          directDate: document.getElementById("mDirectDate").value,
+          degreeDate: document.getElementById("mDegreeDate").value,
+          stage: document.getElementById("mStage").value,
+          extensions: collectExtensions("masters")
+        },
+        phd: {
+          baseDecision: document.getElementById("pBaseDecision").value,
+          baseDate: document.getElementById("pBaseDate").value,
+          baseDuration: document.getElementById("pBaseDuration").value,
+          type: document.getElementById("pType").value,
+          university: document.getElementById("pUniversity").value,
+          country: document.getElementById("pCountry").value,
+          changeMajorDecision: document.getElementById("pChangeMajorDecision").value,
+          changeMajorDate: document.getElementById("pChangeMajorDate").value,
+          changeUniDecision: document.getElementById("pChangeUniDecision").value,
+          changeUniDate: document.getElementById("pChangeUniDate").value,
+          tripDecision: document.getElementById("pTripDecision").value,
+          tripDate: document.getElementById("pTripDate").value,
+          endDecision: document.getElementById("pEndDecision").value,
+          endDate: document.getElementById("pEndDate").value,
+          endType: document.getElementById("pEndType").value,
+          directDate: document.getElementById("pDirectDate").value,
+          degreeDate: document.getElementById("pDegreeDate").value,
+          stage: document.getElementById("pStage").value,
+          extensions: collectExtensions("phd")
+        }
+      };
+    }
 
-</script>
+    function fillForm(r) {
+      const p = r.personal || {};
+      document.getElementById("civilId").value = p.civilId || "";
+      document.getElementById("name").value = p.name || "";
+      document.getElementById("gender").value = p.gender || "";
+      document.getElementById("birthDate").value = p.birthDate || "";
+      document.getElementById("email").value = p.email || "";
+      document.getElementById("mobile").value = p.mobile || "";
+      document.getElementById("employeeNo").value = p.employeeNo || "";
+      document.getElementById("college").value = p.college || "";
+      document.getElementById("department").value = p.department || "";
+      document.getElementById("appointmentDecision").value = p.appointmentDecision || "";
+      document.getElementById("appointmentDate").value = p.appointmentDate || "";
+      document.getElementById("promotionDecision").value = p.promotionDecision || "";
+      document.getElementById("promotionDate").value = p.promotionDate || "";
+      uploadedFiles = p.files || [];
+      renderFiles();
 
+      const l = r.language || {};
+      document.getElementById("langBaseDecision").value = l.baseDecision || "";
+      document.getElementById("langBaseDate").value = l.baseDate || "";
+      document.getElementById("langBaseDuration").value = l.baseDuration || "";
+      document.getElementById("langEndDecision").value = l.endDecision || "";
+      document.getElementById("langEndDate").value = l.endDate || "";
+      document.getElementById("langEndType").value = l.endType || "";
+      document.getElementById("langDirectDate").value = l.directDate || "";
+      fillExtensions("lang", l.extensions || []);
+
+      const m = r.masters || {};
+      document.getElementById("mBaseDecision").value = m.baseDecision || "";
+      document.getElementById("mBaseDate").value = m.baseDate || "";
+      document.getElementById("mBaseDuration").value = m.baseDuration || "";
+      document.getElementById("mType").value = m.type || "";
+      document.getElementById("mUniversity").value = m.university || "";
+      document.getElementById("mCountry").value = m.country || "";
+      document.getElementById("mChangeMajorDecision").value = m.changeMajorDecision || "";
+      document.getElementById("mChangeMajorDate").value = m.changeMajorDate || "";
+      document.getElementById("mChangeUniDecision").value = m.changeUniDecision || "";
+      document.getElementById("mChangeUniDate").value = m.changeUniDate || "";
+      document.getElementById("mTripDecision").value = m.tripDecision || "";
+      document.getElementById("mTripDate").value = m.tripDate || "";
+      document.getElementById("mEndDecision").value = m.endDecision || "";
+      document.getElementById("mEndDate").value = m.endDate || "";
+      document.getElementById("mEndType").value = m.endType || "";
+      document.getElementById("mDirectDate").value = m.directDate || "";
+      document.getElementById("mDegreeDate").value = m.degreeDate || "";
+      document.getElementById("mStage").value = m.stage || "";
+      fillExtensions("masters", m.extensions || []);
+
+      const pHd = r.phd || {};
+      document.getElementById("pBaseDecision").value = pHd.baseDecision || "";
+      document.getElementById("pBaseDate").value = pHd.baseDate || "";
+      document.getElementById("pBaseDuration").value = pHd.baseDuration || "";
+      document.getElementById("pType").value = pHd.type || "";
+      document.getElementById("pUniversity").value = pHd.university || "";
+      document.getElementById("pCountry").value = pHd.country || "";
+      document.getElementById("pChangeMajorDecision").value = pHd.changeMajorDecision || "";
+      document.getElementById("pChangeMajorDate").value = pHd.changeMajorDate || "";
+      document.getElementById("pChangeUniDecision").value = pHd.changeUniDecision || "";
+      document.getElementById("pChangeUniDate").value = pHd.changeUniDate || "";
+      document.getElementById("pTripDecision").value = pHd.tripDecision || "";
+      document.getElementById("pTripDate").value = pHd.tripDate || "";
+      document.getElementById("pEndDecision").value = pHd.endDecision || "";
+      document.getElementById("pEndDate").value = pHd.endDate || "";
+      document.getElementById("pEndType").value = pHd.endType || "";
+      document.getElementById("pDirectDate").value = pHd.directDate || "";
+      document.getElementById("pDegreeDate").value = pHd.degreeDate || "";
+      document.getElementById("pStage").value = pHd.stage || "";
+      fillExtensions("phd", pHd.extensions || []);
+    }
+
+    function clearForm() {
+      document.querySelectorAll("#database input, #database textarea").forEach(el => el.value = "");
+      document.querySelectorAll("#database select").forEach(el => el.value = "");
+      uploadedFiles = [];
+      renderFiles();
+      selectedId = null;
+      fillExtensions("lang", []);
+      fillExtensions("masters", []);
+      fillExtensions("phd", []);
+    }
+
+    function renderList(filter = "") {
+      const list = document.getElementById("recordList");
+      const filtered = records.filter(r => {
+        const p = r.personal || {};
+        return [p.name, p.civilId, p.employeeNo].join(" ").includes(filter);
+      });
+
+      list.innerHTML = filtered.map(r => {
+        const p = r.personal || {};
+        return `
+          <div class="record ${selectedId === r.id ? "active" : ""}">
+            <div>
+              <h4>${p.name || "-"}</h4>
+              <p>${p.civilId || "-"} • ${p.employeeNo || "-"}</p>
+              <p>${p.college || "-"} • ${p.department || "-"}</p>
+            </div>
+            <button class="btn btn-outline" onclick="selectRecord(${r.id})">فتح</button>
+          </div>
+        `;
+      }).join("");
+      updateStats();
+    }
+
+    function updateStats() {
+      document.getElementById("st1").textContent = records.length;
+      document.getElementById("st2").textContent = 0;
+      document.getElementById("st3").textContent = 0;
+      document.getElementById("st4").textContent = records.reduce((n, r) => n + ((r.personal?.files?.length) || 0), 0);
+    }
+
+    window.selectRecord = function(id) {
+      const r = records.find(x => x.id === id);
+      if (!r) return;
+      selectedId = id;
+      fillForm(r);
+      renderList(document.getElementById("searchInput").value);
+    };
+
+    document.getElementById("addBtn").addEventListener("click", () => {
+      const r = readForm();
+      if (!r.personal.name || !r.personal.civilId) return alert("أدخل اسم المبتعث والسجل المدني");
+      records.unshift(r);
+      clearForm();
+      renderList(document.getElementById("searchInput").value.trim());
+    });
+
+    document.getElementById("editBtn").addEventListener("click", () => {
+      if (!selectedId) return alert("اختر سجلًا أولًا");
+      const idx = records.findIndex(x => x.id === selectedId);
+      if (idx === -1) return;
+      records[idx] = readForm();
+      clearForm();
+      renderList(document.getElementById("searchInput").value.trim());
+    });
+
+    document.getElementById("deleteBtn").addEventListener("click", () => {
+      if (!selectedId) return alert("اختر سجلًا أولًا");
+      records = records.filter(x => x.id !== selectedId);
+      clearForm();
+      renderList(document.getElementById("searchInput").value.trim());
+    });
+
+    document.getElementById("clearBtn").addEventListener("click", clearForm);
+
+    document.getElementById("searchInput").addEventListener("input", e => {
+      renderList(e.target.value.trim());
+    });
+
+    document.getElementById("exportBtn").addEventListener("click", () => {
+      const headers = [
+        "السجل المدني","اسم المبتعث","الجنس","تاريخ الميلاد","البريد الإلكتروني","الجوال",
+        "الرقم الوظيفي","الكلية","القسم","قرار التعيين","تاريخ التعيين",
+        "قرار ترقية محاضر","تاريخ الترقية","مرفقات",
+        "اللغة-قرار الابتعاث","اللغة-تاريخ القرار","اللغة-مدة القرار","اللغة-التمديدات",
+        "الماجستير-قرار الابتعاث","الماجستير-تاريخ الابتعاث","الماجستير-نوع الابتعاث","الماجستير-التمديدات",
+        "الدكتوراة-قرار الابتعاث","الدكتوراة-تاريخ الابتعاث","الدكتوراة-نوع الابتعاث","الدكتوراة-التمديدات"
+      ];
+
+      const rows = records.map(r => {
+        const p = r.personal || {};
+        const l = r.language || {};
+        const m = r.masters || {};
+        const d = r.phd || {};
+
+        const fmtExt = (arr = []) => arr.map(x => `${x.number}:${x.decision}|${x.date}|${x.duration}`).join(" || ");
+
+        return [
+          p.civilId, p.name, p.gender, p.birthDate, p.email, p.mobile,
+          p.employeeNo, p.college, p.department, p.appointmentDecision, p.appointmentDate,
+          p.promotionDecision, p.promotionDate, (p.files || []).join(" | "),
+          l.baseDecision || "", l.baseDate || "", l.baseDuration || "", fmtExt(l.extensions),
+          m.baseDecision || "", m.baseDate || "", m.type || "", fmtExt(m.extensions),
+          d.baseDecision || "", d.baseDate || "", d.type || "", fmtExt(d.extensions)
+        ];
+      });
+
+      const csv = [headers, ...rows]
+        .map(row => row.map(v => `"${String(v ?? "").replaceAll('"','""')}"`).join(","))
+        .join("\n");
+
+      const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "scholars-database.csv";
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // البداية: تمديد واحد فقط ظاهر
+    fillExtensions("lang", []);
+    fillExtensions("masters", []);
+    fillExtensions("phd", []);
+    renderList();
+  </script>
 </body>
 </html>
